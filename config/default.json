@@ -1,0 +1,8 @@
+{
+    "db":{
+        "connectionString":"ourconnectionstring"
+    },
+    "ports":{
+        "serverPort":3001
+    }
+}
