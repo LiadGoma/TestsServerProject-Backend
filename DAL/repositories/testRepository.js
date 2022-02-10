@@ -1,7 +1,7 @@
 const { Test } = require("../models/test");
 
-const getAllTest = async () => {
-    const tests = await Test.find();
+const getAllTest = async (filter) => {
+    const tests = await Test.find(filter);
     return tests;
 }
 const createNewTest = async (test) => {
@@ -17,10 +17,6 @@ const getTestById = async (id) => {
     return test;
 }
 
-const getTestByField = async (field) => {
-    const tests = await Test.findOne({ field: field })
-}
-
 const updateTest = async (id, updatedTest) => {
     try {
         await Test.findOneAndUpdate({ _id: id }, updatedTest);
@@ -33,6 +29,5 @@ module.exports = {
     getAllTest,
     createNewTest,
     getTestById,
-    getTestByField,
     updateTest
 }

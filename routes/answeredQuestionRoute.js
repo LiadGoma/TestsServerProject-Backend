@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-        const answeredQuestions = await answeredQuestionController.getAllAnsweredQuestions();
+        const answeredQuestions = await answeredQuestionController.getAllAnsweredQuestions(req);
         res.status(200).send(answeredQuestions);
     } catch (error) {
         res.status(400).send(error);

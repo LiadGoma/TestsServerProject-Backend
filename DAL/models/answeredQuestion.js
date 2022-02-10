@@ -16,8 +16,8 @@ const answeredQuestionSchema = new mongoose.Schema({
 });
 const AnsweredQuestion = mongoose.model('AnsweredQuesiton', answeredQuestionSchema);
 
-exports.AnsweredQuestion = AnsweredQuestion;
 module.exports={
+    AnsweredQuestion,
     answeredQuestionSchema
 }
 

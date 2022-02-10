@@ -1,5 +1,5 @@
-const express = require("express");
-const app = express();
+const app = require("express")();
+//const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -11,7 +11,6 @@ const answeredQuestionRouter = require("./routes/answeredQuestionRoute");
 const answeredTestRouter = require("./routes/answeredTestRoute");
 const respondentRouter = require("./routes/respondentRoute");
 const testRouter = require("./routes/testRoute");
-
 
 const port = config.get("ports.serverPort") || 3001;
 const mongoDbConnectionString = config.get("db.connectionString");
