@@ -1,13 +1,38 @@
 const { Test } = require("../models/test");
-const getAllTest = () => {
-    return await Test.find();
+
+const getAllTest = async () => {
+    const tests = await Test.find();
+    return tests;
 }
-const createNewTest = () => {
-
+const createNewTest = async (test) => {
+    newTest = new Test({
+        ...test
+    });
+    await newTest.save();
+    return newTest;
 }
 
+const getTestById = async (id) => {
+    const test = await Test.findById(id);
+    return test;
+}
 
+const getTestByField = async (field) => {
+    const tests = await Test.findOne({ field: field })
+}
+
+const updateTest = async (id, updatedTest) => {
+    try {
+        await Test.findOneAndUpdate({ id: id }, updatedTest);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
 module.exports = {
     getAllTest,
-    createNewTest
+    createNewTest,
+    getTestById,
+    getTestByField,
+    updateTest
 }
