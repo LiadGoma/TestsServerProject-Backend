@@ -1,11 +1,8 @@
 const respondentRepository = require("../DAL/repositories/respondentRepository");
+const extractReqBody = require("../services/extractReqBody");
 
 const createNewRespondent = async (req) => {
-    const newRespondent = {
-        name: req.body.name,
-        email: req.body.email,
-        phoneNumber: req.body.phoneNumber,
-    };
+    const newRespondent = extractReqBody.extractRespondentBody(req);
     const respondentSaved = await respondentRepository.createNewRespondent(newRespondent);
     return respondentSaved;
 }
@@ -15,7 +12,7 @@ const getAllRespondents = async () => {
     return respondents;
 }
 const getRespondentsById = async (req) => {
-    const respondent = respondentRepository.getById(req.body.id);
+    const respondent = await respondentRepository.getById(req.params.id);
     return respondent;
 }
 

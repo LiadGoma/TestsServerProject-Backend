@@ -1,47 +1,41 @@
-const questionRepository=require("../DAL/repositories/questionRepository");
+const questionRepository = require("../DAL/repositories/questionRepository");
+const extractReqBody = require("../services/extractReqBody");
 
-const createNewQuestion = async (req) =>{
-    const newQuestion = {
-        field: req.body.field,
-        isMultichoice: req.body.isMultichoice,
-        questionContent: req.body.questionContent,
-        extraContent: req.body.extraContent,
-        answers: req.body.answers,
-        isHorizontal: req.body.isHorizontal,
-        tags: req.body.tags
-    }
+const createNewQuestion = async (req) => {
+    const newQuestion =extractReqBody.extractQuestionBody(req);
     const questionSaved = await questionRepository.createNewQuestion(newQuestion);
     return questionSaved;
 }
 
-const getQuestionByField = async () =>{
-    const field = req.body.field;
+const getQuestionByField = async () => {
+    const field = req.params.field;
     const question = await questionRepository.getQuestionByField(field);
     return question;
 }
-    
-const getQuestionById = async (req) =>{
-    const id = req.body.id;
+
+const getQuestionById = async (req) => {
+    const id = req.params.id;
     const question = await questionRepository.getQuestionById(id);
     return question;
 }
-const updateQuestion = async (req) =>{
-    const response = await questionRepository.updateQuestion(req.body.question, req.body.id);
+const updateQuestion = async (req) => {
+    const newQuestion= extractReqBody.extractQuestionBody(req);
+    const response = await questionRepository.updateQuestion(newQuestion, req.params.id);
     return response;
 }
 
-const getAllQuestions = async () =>{
+const getAllQuestions = async () => {
     const questions = await questionRepository.getAllQuestions();
     return questions;
 }
 
-const deleteQuestion = async (req) =>{
-    const id = req.body.id;
+const deleteQuestion = async (req) => {
+    const id = req.params.id;
     const deletedQuestion = await questionRepository.deleteQuestion(id);
     return deletedQuestion;
 }
- 
-module.exports={
+
+module.exports = {
     createNewQuestion,
     getQuestionByField,
     getQuestionById,

@@ -1,24 +1,19 @@
-const answeredQuestionRepository=require("../DAL/repositories/answeredQuestionRepository");
+const answeredQuestionRepository = require("../DAL/repositories/answeredQuestionRepository");
+const extractReqBody = require("../services/extractReqBody");
 
-const createNewAnsweredQuestion = async (req) =>{
-    const newAnsweredQuestion = {
-        questionId: req.body.questionId,
-        answers: req.body.answers,
-        isCorrect: req.body.isCorrect
-    }
-
-    const answeredQuestionSaved = await answeredQuestionRepository.
-                                    createNewAnsweredQuestion(newAnsweredQuestion);
+const createNewAnsweredQuestion = async (req) => {
+    const newAnsweredQuestion = extractReqBody.extractAnsweredQuestionBody(req);
+    const answeredQuestionSaved = await answeredQuestionRepository.createNewAnsweredQuestion(newAnsweredQuestion);
     return answeredQuestionSaved;
 }
 
-const getAnsweredQuestionById = async (req) =>{
-    const id = req.body.id;
+const getAnsweredQuestionById = async (req) => {
+    const id = req.params.id;
     const answeredQuestion = await answeredQuestionRepository.getAnsweredQuestionById(id);
     return answeredQuestion;
 }
 
-const getAllAnsweredQuestions = async () =>{
+const getAllAnsweredQuestions = async () => {
     const answeredQuestions = await answeredQuestionRepository.getAllAnsweredQuestions();
     return answeredQuestions;
 }
@@ -29,7 +24,7 @@ const getAllAnsweredQuestions = async () =>{
 //    return deletedAnsweredQuestion;
 //}
 
-module.exports={
+module.exports = {
     createNewAnsweredQuestion,
     //getAnsweredQuestionByField,
     getAnsweredQuestionById,

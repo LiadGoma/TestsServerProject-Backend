@@ -23,7 +23,7 @@ const getTestByField = async (field) => {
 
 const updateTest = async (id, updatedTest) => {
     try {
-        await Test.findOneAndUpdate({ id: id }, updatedTest);
+        await Test.findOneAndUpdate({ _id: id }, updatedTest);
         return true;
     } catch (error) {
         return false;

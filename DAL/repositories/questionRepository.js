@@ -24,8 +24,9 @@ const getQuestionByField = async (field) => {
 }
 
 const updateQuestion = async (question, id) => {
+    console.log(question);
     try {
-        Question.findOneAndUpdate({ id: id }, question);
+        await Question.findOneAndUpdate({ _id: id }, question);
         return true;
     } catch (ex) {
         return false;
@@ -33,8 +34,10 @@ const updateQuestion = async (question, id) => {
 }
 
 const deleteQuestion = async (id) => {
+    console.log(id);
     try {
-        const deletedQuestion = Question.findOneAndDelete({ id: id });
+        const deletedQuestion = await Question.findOneAndDelete({ _id: id });
+        console.log(deletedQuestion);
         if (!deletedQuestion) return false;
         return deletedQuestion;
     } catch (error) {
