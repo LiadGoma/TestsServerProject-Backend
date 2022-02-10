@@ -11,7 +11,7 @@ const answeredQuestionRouter = require("./routes/answeredQuestionRoute");
 const answeredTestRouter = require("./routes/answeredTestRoute");
 const respondentRouter = require("./routes/respondentRoute");
 const testRouter = require("./routes/testRoute");
-const answerRouter = require("./routes/answerRoute");
+
 
 const port = config.get("ports.serverPort") || 3001;
 const mongoDbConnectionString = config.get("db.connectionString");
@@ -26,7 +26,6 @@ app.use("/api/answeredQuestions", answeredQuestionRouter);
 app.use("/api/tests", testRouter);
 app.use("/api/answeredTests", answeredTestRouter);
 app.use("/api/respondents", respondentRouter);
-app.use("/api/answers", answerRouter);
 
 
 mongoose.connect(mongoDbConnectionString)

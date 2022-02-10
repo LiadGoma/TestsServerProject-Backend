@@ -1,6 +1,6 @@
 {
     "db":{
-        "connectionString":"ourconnectionstring"
+        "connectionString":"mongodb+srv://StamUser:123@yahalomtestproject.rd6yb.mongodb.net/testProjectDB?retryWrites=true&w=majority"
     },
     "ports":{
         "serverPort":3001
