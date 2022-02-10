@@ -19,7 +19,8 @@ const createNewRespondent = async (respondent) => {
 }
 
 const getById = async (id) => {
-    const respondent= await Respondent.findOne({id:id});
+    const respondent = await Respondent.findOne({ _id: id });
+    console.log(respondent);
     return respondent;
 }
 

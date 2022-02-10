@@ -1,4 +1,4 @@
-const answeredTestController= require("../controllers/answeredTestController");
+const answeredTestController = require("../controllers/answeredTestController");
 const express = require('express');
 const router = express.Router();
 
@@ -9,30 +9,48 @@ router.post('/', async (req, res) => {
     else res.status(200).send(savedAnsweredTest);
 });
 
-router.put('/:id', async (req, res) =>{
-    const updatedAnsweredTest = await answeredTestController.updateAnsweredTest(req);
-    if (!updatedAnsweredTest) res.status(400).send("Operation failed");
-    else res.status(200).send(updatedAnsweredTest);
- });
- 
- router.get('/', async (req, res) => {
-    const answeredTests = await answeredTestController.getAllAnsweredTests();
-    res.status(200).send(answeredTests);
- });
+// router.put('/:id', async (req, res) =>{
+//     const updatedAnsweredTest = await answeredTestController.updateAnsweredTest(req);
+//     if (!updatedAnsweredTest) res.status(400).send("Operation failed");
+//     else res.status(200).send(updatedAnsweredTest);
+//  });
 
- router.get('/:id', async (req, res) =>{
-    const answeredTest = await answeredTestController.getAnsweredTestById(req);
-    res.status(200).send(answeredTest);
- });
+router.get('/', async (req, res) => {
+    try {
+        const answeredTests = await answeredTestController.getAllAnsweredTests();
+        res.status(200).send(answeredTests);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
 
- router.get('/:field', async (req, res) =>{
-    const answeredTest = await answeredTestController.getAnsweredTestByField(req);
-    res.status(200).send(answeredTest);
- })
+});
+
+router.get('/:id', async (req, res) => {
+    try {
+        const answeredTest = await answeredTestController.getAnsweredTestById(req);
+        if (!answeredTest) res.status(400).send("couldnt get the requested answered question");
+        res.status(200).send(answeredTest);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+
+});
+
+//not working
+router.get('/:field', async (req, res) => {
+    try {
+        const answeredTest = await answeredTestController.getAnsweredTestByField(req);
+        if (!answeredTest) res.status(400).send("couldnt get the requested answered question");
+        res.status(200).send(answeredTest);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+
+})
 module.exports = router;
 
 
- 
 
- 
- 
+
+
+

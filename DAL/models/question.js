@@ -22,8 +22,9 @@ const questionSchema = new mongoose.Schema({
         required: false
     },
     answers: [{
-            body: String,
-            isCorrect: Boolean,
+            answerId: String,
+            content:String,
+            isCorrect: Boolean
     }],
     isHorizontal: {
         type: Boolean,
@@ -32,13 +33,14 @@ const questionSchema = new mongoose.Schema({
     tags: [String],
     lastUpdated: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     }
 });
 const Question = mongoose.model('Question', questionSchema);
 
-exports.Question = Question;
 module.exports={
-    questionSchema
+    questionSchema,
+    Question
 }
 
