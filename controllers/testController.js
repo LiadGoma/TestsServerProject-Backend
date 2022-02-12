@@ -1,20 +1,16 @@
 const testRepository = require("../DAL/repositories/testRepository");
-const exportReqBody = require("../services/extractReqBody");
+const container = require("../DI/containerConfig");
+const extractReqBody = container.resolve("extractReqBodyService");
 
-const getAllTests = async () => {
-    const tests = await testRepository.getAllTest();
+const getAllTests = async ({ query }) => {      
+    const tests = await testRepository.getAllTest(query);
     return tests;
-}
+    } 
+    
 const createNewTest = async (req) => {
-    const newTest = exportReqBody.extractTestBody(req);
+    const newTest = extractReqBody.extractTestBody(req);
     const savedTest = await testRepository.createNewTest(newTest);
     return savedTest;
-}
-
-const getTestByField = async (req) => {
-    const field = req.params.field;
-    const test = await testRepository.getTestByField(field);
-    return test;
 }
 
 const getTestById = async (req) => {
@@ -24,7 +20,7 @@ const getTestById = async (req) => {
 }
 
 const updateTest = async (req) => {
-    const newTest = exportReqBody.extractTestBody(req);
+    const newTest = extractReqBody.extractTestBody(req);
     const id = req.params.id;
     const res = await testRepository.updateTest(id, newTest);
     return res;
@@ -33,7 +29,6 @@ const updateTest = async (req) => {
 module.exports = {
     getAllTests,
     createNewTest,
-    getTestByField,
     getTestById,
     updateTest
 }

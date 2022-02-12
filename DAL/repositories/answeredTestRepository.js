@@ -14,8 +14,14 @@ const getAnsweredTestById = async (id) => {
     return answeredTest;
 }
 
+const getAllAnsweredTests = async (filter) => {
+    return await AnsweredTest.find(filter);
+
+}
+
 
 module.exports = {
 createNewAnsweredTest,
+getAllAnsweredTests,
 getAnsweredTestById
 }

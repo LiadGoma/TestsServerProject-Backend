@@ -1,16 +1,11 @@
 const questionRepository = require("../DAL/repositories/questionRepository");
-const extractReqBody = require("../services/extractReqBody");
+const container = require("../DI/containerConfig");
+const extractReqBody = container.resolve("extractReqBodyService");
 
 const createNewQuestion = async (req) => {
     const newQuestion =extractReqBody.extractQuestionBody(req);
     const questionSaved = await questionRepository.createNewQuestion(newQuestion);
     return questionSaved;
-}
-
-const getQuestionByField = async () => {
-    const field = req.params.field;
-    const question = await questionRepository.getQuestionByField(field);
-    return question;
 }
 
 const getQuestionById = async (req) => {
@@ -24,8 +19,8 @@ const updateQuestion = async (req) => {
     return response;
 }
 
-const getAllQuestions = async () => {
-    const questions = await questionRepository.getAllQuestions();
+const getAllQuestions = async ({query}) => {
+    const questions = await questionRepository.getAllQuestions(query);
     return questions;
 }
 
@@ -37,7 +32,6 @@ const deleteQuestion = async (req) => {
 
 module.exports = {
     createNewQuestion,
-    getQuestionByField,
     getQuestionById,
     updateQuestion,
     getAllQuestions,

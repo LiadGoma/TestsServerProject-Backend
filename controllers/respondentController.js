@@ -1,5 +1,6 @@
 const respondentRepository = require("../DAL/repositories/respondentRepository");
-const extractReqBody = require("../services/extractReqBody");
+const container = require("../DI/containerConfig");
+const extractReqBody = container.resolve("extractReqBodyService");
 
 const createNewRespondent = async (req) => {
     const newRespondent = extractReqBody.extractRespondentBody(req);
@@ -7,15 +8,14 @@ const createNewRespondent = async (req) => {
     return respondentSaved;
 }
 
-const getAllRespondents = async () => {
-    const respondents = await respondentRepository.getAllRespondents();
+const getAllRespondents = async ({query}) => {
+    const respondents = await respondentRepository.getAllRespondents(query);
     return respondents;
 }
 const getRespondentsById = async (req) => {
     const respondent = await respondentRepository.getById(req.params.id);
     return respondent;
 }
-
 
 module.exports = {
     createNewRespondent,

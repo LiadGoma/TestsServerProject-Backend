@@ -1,5 +1,6 @@
 const answeredQuestionRepository = require("../DAL/repositories/answeredQuestionRepository");
-const extractReqBody = require("../services/extractReqBody");
+const container = require("../DI/containerConfig");
+const extractReqBody = container.resolve("extractReqBodyService");
 
 const createNewAnsweredQuestion = async (req) => {
     const newAnsweredQuestion = extractReqBody.extractAnsweredQuestionBody(req);
@@ -13,22 +14,20 @@ const getAnsweredQuestionById = async (req) => {
     return answeredQuestion;
 }
 
-const getAllAnsweredQuestions = async () => {
-    const answeredQuestions = await answeredQuestionRepository.getAllAnsweredQuestions();
+const getAllAnsweredQuestions = async ({query}) => {
+    const answeredQuestions = await answeredQuestionRepository.getAllAnsweredQuestions(query);
     return answeredQuestions;
 }
 
-//const deleteAnsweredQuestion = async (req) =>{
-//    const id = req.body.id;
-//    const deletedAnsweredQuestion = await answeredQuestionRepository.deleteAnsweredQuestion(id);
-//    return deletedAnsweredQuestion;
-//}
+const deleteAnsweredQuestion = async (req) =>{
+   const id = req.body.id;
+   const deletedAnsweredQuestion = await answeredQuestionRepository.deleteAnsweredQuestion(id);
+   return deletedAnsweredQuestion;
+}
 
 module.exports = {
     createNewAnsweredQuestion,
-    //getAnsweredQuestionByField,
     getAnsweredQuestionById,
     getAllAnsweredQuestions,
-    //updateAnsweredQuestion,
-    //deleteAnsweredQuestion
+    deleteAnsweredQuestion
 }

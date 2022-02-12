@@ -20,12 +20,11 @@ const createNewRespondent = async (respondent) => {
 
 const getById = async (id) => {
     const respondent = await Respondent.findOne({ _id: id });
-    console.log(respondent);
     return respondent;
 }
 
-const getAllRespondents = async () => {
-    const respondents = await Respondent.find();
+const getAllRespondents = async (filter) => {
+    const respondents = await Respondent.find(filter);
     return respondents;
 }
 

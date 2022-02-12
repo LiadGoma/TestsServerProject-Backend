@@ -13,8 +13,8 @@ const getAnsweredQuestionById = async (id) => {
     return answeredQuestion;
 }
 
-const getAllAnsweredQuestions = async () => {
-    return await AnsweredQuestion.find();
+const getAllAnsweredQuestions = async (filter) => {
+    return await AnsweredQuestion.find(filter);
 }
 
 

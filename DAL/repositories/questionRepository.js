@@ -9,8 +9,8 @@ const createNewQuestion = async (question) => {
     return newQuestion;
 }
 
-const getAllQuestions = async () => {
-    const questions = await Question.find();
+const getAllQuestions = async (filter) => {
+    const questions = await Question.find(filter);
     return questions;
 }
 
@@ -19,12 +19,7 @@ const getQuestionById = async (id) => {
     return question;
 }
 
-const getQuestionByField = async (field) => {
-    const question = await Question.findOne({ field: field });
-}
-
 const updateQuestion = async (question, id) => {
-    console.log(question);
     try {
         await Question.findOneAndUpdate({ _id: id }, question);
         return true;
@@ -34,10 +29,8 @@ const updateQuestion = async (question, id) => {
 }
 
 const deleteQuestion = async (id) => {
-    console.log(id);
     try {
         const deletedQuestion = await Question.findOneAndDelete({ _id: id });
-        console.log(deletedQuestion);
         if (!deletedQuestion) return false;
         return deletedQuestion;
     } catch (error) {
@@ -47,7 +40,6 @@ const deleteQuestion = async (id) => {
 }
 module.exports = {
     createNewQuestion,
-    getQuestionByField,
     getQuestionById,
     updateQuestion,
     getAllQuestions,
