@@ -4,9 +4,13 @@ const router = express.Router();
 
 
 router.post('/', async (req, res) => {
-   const savedTest = await testController.createNewTest(req);
-   if (!savedTest) res.status(400).send("Operation failed")
-   else res.status(200).send(savedTest);
+   try {
+      const savedTest = await testController.createNewTest(req);
+      res.status(200).send(savedTest);
+   } catch (error) {
+      console.log(error);
+      res.status(400).send("Operation failed")
+   }
 });
 
 router.get('/', async (req, res) => {
