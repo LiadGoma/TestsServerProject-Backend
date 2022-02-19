@@ -1,4 +1,5 @@
 const testRepository = require("../DAL/repositories/testRepository");
+const questionsRepository = require("../DAL/repositories/questionRepository")
 const container = require("../DI/containerConfig");
 const extractReqBody = container.resolve("extractReqBodyService");
 
@@ -9,6 +10,7 @@ const getAllTests = async ({ query }) => {
     
 const createNewTest = async (req) => {
     const newTest = extractReqBody.extractTestBody(req);
+    newTest.questions = await questionsRepository.getAllQuestions({_id:{$in:newTest.questions}});
     const savedTest = await testRepository.createNewTest(newTest);
     return savedTest;
 }
