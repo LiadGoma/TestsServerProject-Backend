@@ -40,10 +40,11 @@ module.exports = class ExtractReqBodyService{
     extractAnsweredTestBody = (req) => {
         const answeredTest = {
             testId: req.body.testId,
-            userId: req.body.userId,
+            respondentId: req.body.respondentId,
             date: req.body.date,
             isUserPassed: req.body.isUserPassed,
-            finalGrade: req.body.finalGrade
+            finalGrade: req.body.finalGrade,
+            answeredQuestions:req.body.answeredQuestions
         }
         return answeredTest;
     }
