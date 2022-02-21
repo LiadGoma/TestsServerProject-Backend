@@ -5,7 +5,7 @@ const answeredTestSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    userId: {
+    respondentId: {
         type: String,
         required: true
     },
@@ -23,8 +23,12 @@ const answeredTestSchema = new mongoose.Schema({
         min: 0,
         max: 100
     },
-    
-    answeredQuestions: [answeredQuestionSchema]
+    answeredQuestions: [{
+        questionId: String,
+        answers:[String],
+        isCorrect: Boolean
+}],
+    // answeredQuestions: [answeredQuestionSchema]
 });
 const AnsweredTest = mongoose.model('AnsweredTest', answeredTestSchema);
 
