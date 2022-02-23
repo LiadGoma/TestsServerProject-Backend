@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
    try {
       const updatedTest = await testController.updateTest(req);
-      if (!updatedTest) res.status(400).send("Operation failed");
+      if (!updatedTest) res.status(400).send("Operation failed")
       else res.status(200).send(updatedTest);
    } catch (error) {
       res.status(400).send(error.message)
