@@ -6,9 +6,7 @@ const answeredQuestionSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    answers:[{
-        body: String,
-    }],
+    answers:[String],
     isCorrect:{
         type: Boolean,
         required: true

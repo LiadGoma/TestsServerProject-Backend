@@ -22,12 +22,10 @@ const getTestById = async (req) => {
 }
 
 const updateTest = async (req) => {
-    const newTest = extractReqBody.extractTestBody(req);
+ const newTest = extractReqBody.extractTestBody(req);
     newTest.questions = await questionsRepository.getAllQuestions({_id:{$in:newTest.questions}});
-    console.log(newTest)
     const id = req.params.id;
     const res = await testRepository.updateTest(id, newTest);
-    console.log(res);
     return res;
 }
 

@@ -16,9 +16,16 @@ const getRespondentsById = async (req) => {
     const respondent = await respondentRepository.getById(req.params.id);
     return respondent;
 }
+const updateRespondent=async(req)=>{
+    const newRespondent = extractReqBody.extractRespondentBody(req);
+    const id = req.params.id;
+    const res = await respondentRepository.updateRespondent(id, newRespondent);
+    return res;
+}
 
 module.exports = {
     createNewRespondent,
     getAllRespondents,
-    getRespondentsById
+    getRespondentsById,
+    updateRespondent
 }

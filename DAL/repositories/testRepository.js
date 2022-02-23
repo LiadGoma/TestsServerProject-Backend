@@ -18,12 +18,10 @@ const getTestById = async (id) => {
 }
 
 const updateTest = async (id, updatedTest) => {
-    try {
-        console.log("in try");
+ try {     
         await Test.findOneAndUpdate({ _id: id }, updatedTest);
         return true;
     } catch (error) {
-        console.log(error)
         return false;
     }
 }

@@ -1,5 +1,5 @@
-module.exports = class ExtractReqBodyService{
-    constructor(){}
+module.exports = class ExtractReqBodyService {
+    constructor() { }
 
     extractTestBody = (req) => {
         const test = {
@@ -13,7 +13,7 @@ module.exports = class ExtractReqBodyService{
             successText: req.body.successText,
             failureText: req.body.failureText,
             lastUpdated: req.body.lastUpdated,
-            questions: req.body.questions?.map((q)=>q.id)
+            questions: req.body.questions?.map((q) => q.id)
         }
         return test
     }
@@ -22,6 +22,7 @@ module.exports = class ExtractReqBodyService{
             name: req.body.name,
             email: req.body.email,
             phoneNumber: req.body.phoneNumber,
+            answeredTestsId: req.body.answeredTestsId
         };
         return respondent
     }
@@ -44,7 +45,8 @@ module.exports = class ExtractReqBodyService{
             date: req.body.date,
             isUserPassed: req.body.isUserPassed,
             finalGrade: req.body.finalGrade,
-            answeredQuestions:req.body.answeredQuestions
+            answeredQuestions: req.body.answeredQuestions,
+            numOfCorrectAnswers: req.body.numOfCorrectAnswers
         }
         return answeredTest;
     }
