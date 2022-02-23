@@ -18,7 +18,7 @@ const getTestById = async (id) => {
 }
 
 const updateTest = async (id, updatedTest) => {
-    try {
+    try {     
         await Test.findOneAndUpdate({ _id: id }, updatedTest);
         return true;
     } catch (error) {

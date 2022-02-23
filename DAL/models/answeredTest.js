@@ -23,6 +23,11 @@ const answeredTestSchema = new mongoose.Schema({
         min: 0,
         max: 100
     },
+    numOfCorrectAnswers:{
+        type:Number,
+        min:0,
+        required:true
+    },
     answeredQuestions: [{
         questionId: String,
         answers:[String],

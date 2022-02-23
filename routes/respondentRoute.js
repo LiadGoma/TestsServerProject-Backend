@@ -3,9 +3,13 @@ const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const savedRespondent = await respondentController.createNewRespondent(req);
-    if (!savedRespondent) res.status(400).send("Email already registered");
-    else res.status(200).send(savedRespondent);
+    try {
+        const savedRespondent = await respondentController.createNewRespondent(req);
+        res.status(200).send(savedRespondent);
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+
 });
 router.get('/', async (req, res) => {
     try {
@@ -25,5 +29,15 @@ router.get('/:id', async (req, res) => {
     }
 
 });
+router.put('/:id', async (req, res) => {
+    try {
+       const updatedRespondent = await respondentController.updateRespondent(req);
+       if (!updatedRespondent) res.status(400).send("Operation failed");
+       else res.status(200).send(updatedRespondent);
+    } catch (error) {
+       res.status(400).send(error.message)
+    }
+ 
+ });
 
 module.exports = router;
