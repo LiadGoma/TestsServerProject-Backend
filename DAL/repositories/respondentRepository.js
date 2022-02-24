@@ -9,13 +9,7 @@ const createNewRespondent = async (respondent) => {
         ...respondent
     });
     await newRespondent.save();
-    return {
-        id: newRespondent.id,
-        email: newRespondent.email,
-        name: newRespondent.name,
-        phoneNumber: newRespondent.phoneNumber
-    };
-
+    return newRespondent;
 }
 
 const getById = async (id) => {
