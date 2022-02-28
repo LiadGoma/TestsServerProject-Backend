@@ -13,7 +13,7 @@ module.exports = class ExtractReqBodyService {
             successText: req.body.successText,
             failureText: req.body.failureText,
             lastUpdated: req.body.lastUpdated,
-            questions: req.body.questions?.map((q) => q.id)
+            questions: req.body.questions?.map((q) => q)
         }
         return test
     }
