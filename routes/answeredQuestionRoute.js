@@ -33,17 +33,4 @@ router.get('/:id', async (req, res) => {
 
 module.exports = router;
 
-    //Update and Delete functions. Irrelevant right now (9.2.22)
-
-    // router.delete('/:id', async (req, res) =>{
-    //    const deletedAnsweredQuestion = await answeredQuestionController.deleteAnsweredQuestion(req);
-    //    res.status(200).send(deletedAnsweredQuestion);
-    // });
-
-    //
-    // router.put('/:id', async (req, res) =>{
-    //      const updatedAnsweredQuestion = await answeredQuestionController.updateAnsweredQuestion(req);
-    //      if (!updatedAnsweredQuestion) res.status(400).send("Operation failed");
-    //      else res.status(200).send(updatedAnsweredQuestion);
-    // });
 

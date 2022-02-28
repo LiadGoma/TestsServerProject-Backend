@@ -33,7 +33,6 @@ const answeredTestSchema = new mongoose.Schema({
         answers:[String],
         isCorrect: Boolean
 }],
-    // answeredQuestions: [answeredQuestionSchema]
 });
 const AnsweredTest = mongoose.model('AnsweredTest', answeredTestSchema);
 
